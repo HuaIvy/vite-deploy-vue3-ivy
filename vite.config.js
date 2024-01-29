@@ -10,6 +10,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  base:"vite-deploy-vue3-ivy/",
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
