@@ -92,7 +92,7 @@ export default {
         }
       })
       .catch((err) => {
-        this.$router.push({ path: '/' })
+        this.$router.push({ path: '/login' })
       })
   },
   methods: {
