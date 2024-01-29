@@ -1,4 +1,4 @@
-import './assets/main.css'
+// import './assets/main.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 import { createApp } from 'vue'
@@ -15,5 +15,6 @@ app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
 axios.defaults.baseURL = 'https://vue3-course-api.hexschool.io/v2';
+axios.prototype.$http = axios;
 
 app.mount('#app')

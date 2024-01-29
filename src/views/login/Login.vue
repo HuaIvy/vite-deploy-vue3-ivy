@@ -19,6 +19,12 @@
               <button @click="handleSubmit()" class="btn btn-lg btn-primary w-100 mt-3" type="button">
                 登入
               </button>
+              <div v-if="this.errorMsg!==''" class="alert alert-danger mt-2" role="alert">
+                  {{errorMsg}}
+              </div>
+              <div v-else-if="this.successMsg!==''" class="alert alert-success mt-2" role="alert">
+                  {{successMsg}}
+              </div>
             </form>
           </div>
         </div>
@@ -29,17 +35,13 @@
 </template>
 
 <script>
-import axiosInstance from '../../api/axios'
 export default {
   data(){
     return{
-      data:{
         username:'',
         password: '',
-
-
-
-      }
+        errorMsg:'',
+        successMsg:'',
     }
   },
   methods:{
@@ -48,16 +50,17 @@ export default {
         username:this.username,
         password:this.password
       }
-      axiosInstance.post(`/admin/signin`,data)
+      this.$http.post(`/admin/signin`,data)
         .then(res=>{
           if(res?.data.success){
              const { token, expired } = res.data;
+             this.successMsg = res.data.message;
              document.cookie = `ivyToken=${token}; expires=${new Date(expired)};`;
-             this.$router.push({path:'/home'})
+             this.$router.push({path:'/productlist'})
           }
         })
         .catch(err=>{
-
+            this.errorMsg = err.response.data.message;
         })
     }
   },
