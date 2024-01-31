@@ -35,7 +35,7 @@
           </tbody>
         </table>
         <p>
-          目前有 <span>{{ products?.length }}</span> 項產品
+          目前有 <span>{{ Object.values(products)?.length }}</span> 項產品
         </p>
       </div>
       <div class="col-md-6">
@@ -98,7 +98,7 @@ export default {
   methods: {
     getProducts(){
           this.$http
-        .get(`/api/${this.path}/admin/products`)
+        .get(`/api/${this.path}/admin/products/all`)
         .then((res) => {
           console.log(res)
           this.products = res.data.products
