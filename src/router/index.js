@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '../views/login/Login.vue'
 import ProductListView from '../views/ProductListView.vue'
+import ProductCart from '../views/ProductCart.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,12 @@ const router = createRouter({
       path: '/productlist',
       name: 'ProductListView',
       component: ProductListView
+
+    },
+    {
+      path: '/productcart',
+      name: 'ProductCart',
+      component: ProductCart
 
     },
     {
