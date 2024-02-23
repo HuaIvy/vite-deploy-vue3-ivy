@@ -128,6 +128,7 @@ export default {
         // modalAdd:null,
         // modalDel:null,
         isNew:false,
+        overlayLoading: null,
     }
   },
   mounted(){
@@ -153,17 +154,22 @@ export default {
   },
   methods: {
     getProducts(page=1){ //query parameter
+      this.overlayLoading = this.$loading.show()
           this.$http
         .get(`/api/${this.path}/admin/products?page=${page}`)
         .then((res) => {
           // console.log(res)
           this.products = res.data.products;
           this.pages = res.data.pagination;//頁數
+          this.overlayLoading.hide()
+          this.overlayLoading = null
         })
 
         //失敗
         .catch((error) => {
-          console.dir(error)
+          console.dir(error);
+          this.overlayLoading.hide()
+          this.overlayLoading = null
         })
        
     },

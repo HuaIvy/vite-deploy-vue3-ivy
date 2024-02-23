@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <h1 class="h3 mb-3 font-weight-normal">
-            請先登入
+            管理者登入
           </h1>
           <div class="col-8">
             <form  id="form" class="form-signin">
@@ -30,6 +30,9 @@
         </div>
         <p class="mt-5 mb-3 text-muted">
           &copy; 2024~∞ - 六角學院
+          <button type="button" class="btn btn-link">
+                  <router-link to="/productCart">商品列表</router-link>
+          </button>
         </p>
       </div>   
 </template>
@@ -65,7 +68,10 @@ export default {
     }
   },
   mounted(){
-  
+    // let token = document.cookie.replace(/(?:(?:^|.*;\s*)ivyToken\s*\=\s*([^;]*).*$)|^.*$/, '$1')
+    // if(token){
+    //   this.$router.push({path:'/productlist'})
+    // }
   }
 }
 </script>

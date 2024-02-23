@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div class="mt-4">
+      <button type="button" class="btn btn-link">
+        <router-link to="/login">管理者後台管理登入</router-link>
+      </button>
       <h2 v-if="carts?.carts?.length === 0">
         購物車目前是空的
       </h2>
@@ -58,6 +61,10 @@
                     aria-hidden="true"
                   ></span>
                   加到購物車
+                </button>
+                <button @click="showMorePage(item)" type="button" class="btn btn-link">
+                  <i class="fas fa-spinner fa-pulse"></i>
+                  查看明細
                 </button>
               </div>
             </td>
@@ -190,7 +197,7 @@
             v-model="user.tel"
             id="tel"
             name="電話"
-            type="text"
+            type="tel"
             class="form-control"
             :class="{ 'is-invalid': errors['電話'] }"
             placeholder="請輸入電話 09XXXXXXXX"
@@ -281,7 +288,9 @@ export default {
             this.getCarts()
             this.overlayLoading.hide();
             this.overlayLoading = null;
-            alert("商品訂購成功")
+            alert("商品訂購成功");
+            this.user = {};
+            this.message = ""
           }
         })
 
@@ -312,6 +321,9 @@ export default {
     showMore(item) {
       this.tempProduct = { ...item }
       this.$refs.modalMore.openModal()
+    },
+    showMorePage(item){
+      this.$router.push({ name: 'ProductDetail', params: { productId: item.id } })
     },
     addToCart(id, num = 1) {
       const order = {

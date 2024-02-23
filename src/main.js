@@ -1,6 +1,4 @@
-// import './assets/main.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-
+import './assets/all.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import axios from 'axios'
@@ -57,7 +55,7 @@ app.use(LoadingPlugin)
 
 
 
-axios.defaults.baseURL = 'https://vue3-course-api.hexschool.io/v2';
+axios.defaults.baseURL = import.meta.env.VITE_PATH;;
 axios.prototype.$http = axios;
 
 app.component('VField', Field);
